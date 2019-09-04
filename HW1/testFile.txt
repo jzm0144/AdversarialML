@@ -1,0 +1,8 @@
+Hi there,
+
+I am the file which is supposed to be transferred from Local to Hopper Server.
+
+
+Thanks
+
+See you @ Hopper.
