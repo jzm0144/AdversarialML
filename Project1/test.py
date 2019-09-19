@@ -9,6 +9,7 @@ def tournament_selection(a, k):
     
 
     
+    
     t = a[:]
     population_size = len(t)
     for i in range(k):
