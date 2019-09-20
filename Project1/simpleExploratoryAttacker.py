@@ -111,6 +111,7 @@ class aSimpleExploratoryAttacker:
         mom = self.tournament_selection(k)
         dad = self.tournament_selection(k)
 
+        debugger.set_trace()
         kid = self.get_worst_fit_individual()
         for j in range(self.chromosome_length):
             self.population[kid].chromosome[j] = random.uniform(self.population[mom].chromosome[j],self.population[dad].chromosome[j])

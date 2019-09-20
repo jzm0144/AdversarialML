@@ -1,6 +1,6 @@
 import random
 
-
+'''
 def tournament_selection(a, k):
     count = 0
     bestParent = -9999999999999.0
@@ -9,7 +9,7 @@ def tournament_selection(a, k):
     
 
     
-    
+
     t = a[:]
     population_size = len(t)
     for i in range(k):
@@ -34,3 +34,6 @@ print("The population = ", a)
 print("number of individuals = ", len(a))
 
 print(tournament_selection(a, 4))
+'''
+def singlePointCrossover(l1, l2, point):
+    
