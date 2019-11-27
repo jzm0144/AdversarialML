@@ -14,6 +14,8 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('TkAgg')
 from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
+import numpy as np
 
 #
 #  Particle Swarm Optimization: Algorithm       
@@ -85,10 +87,7 @@ class myPSO:
         fig = plt.figure()
         ax1 = fig.add_subplot(1,1,1,projection='3d')
         ax1.scatter(self.hacker_tracker_x,self.hacker_tracker_y,self.hacker_tracker_z)
-        #plt.title("Final Particles Approximates")
-        ax1.set_xlabel('x')
-        ax1.set_ylabel('y')
-        #ax1.set_zlabel('Schaffer(x, y)')
+        plt.title("The Particles in the End")
         ax1.set_xlim3d(-100.0,100.0)
         ax1.set_ylim3d(-100.0,100.0)
         ax1.set_zlim3d(0.2,1.0)
@@ -109,6 +108,14 @@ class myPSO:
                 best_p_fitness = self.swarm[i].p_fitness
                 best_p_particle = i
         return [best_p_particle, best_p_fitness]
+
+    def get_best_mean_fitness(self):
+        best_p_fitness = -99999999999.0
+        best_p_particle = -1
+        fit = 0.0
+        for i in range(self.swarm_size):
+            fit += self.swarm[i].p_fitness
+        return fit/self.swarm_size
 
     def fitnessUpdateSync(self):
         self.count += 1
@@ -183,32 +190,55 @@ SwarmSize = 30
 phi = phi_1 + phi_2
 K = 2/abs(2 - phi - math.sqrt(phi**2 - 4*phi))
 
-psoType = "Sync"
+PsoType = ["Sync", "aSync"]
 
-# Generate the SWARM Instance
-mySwarm = myPSO(SwarmSize,ChromLength,phi_1, phi_2, lb,ub, K)
+results = {"Sync":[], "aSync":[]}
 
-# Generate all the Swarm Particles
-mySwarm.generate_particles()
 
-k = 1
-while True:
-    if psoType == "Sync":
-        # Calculate and Update the Fitnesses in X, P and Best_Particle_Fitness
-        mySwarm.fitnessUpdateSync()
+repeat = 30
+for turn in range(repeat):
+    for updateType in PsoType:
+        # Generate the SWARM Instance
+        mySwarm = myPSO(SwarmSize,ChromLength,phi_1, phi_2, lb,ub, K)
 
-        # Update the positions in X, P, and V
-        mySwarm.moveParticles(psoType = psoType)
-    if psoType == "aSync":
-        # Update the positions in X, P, and V
-        mySwarm.moveParticles(psoType = psoType)
+        # Generate all the Swarm Particless
+        mySwarm.generate_particles()
+        
+        k = 1
+        while True:
+            if updateType == "Sync":
+                # Calculate and Update the Fitnesses in X, P and Best_Particle_Fitness
+                mySwarm.fitnessUpdateSync()
 
-    # Update the Tray with new Particles to display
-    mySwarm.updateParticleTray()
-    k = k + 1
-    if(k < MaxEvaluations-SwarmSize and mySwarm.gBestP_Fitness >= 0.99754):
-        break
+                # Update the positions in X, P, and V
+                mySwarm.moveParticles(psoType = updateType)
 
-# Visualize Particles
-mySwarm.print_summary()
-mySwarm.plot_evolved_candidate_solutions()
+                # Update the Tray with new Particles to display
+                mySwarm.updateParticleTray()
+
+                # Visualize Particles
+                #mySwarm.print_summary()
+                #mySwarm.plot_evolved_candidate_solutions()
+            if updateType == "aSync":
+                # Update the positions in X, P, and V
+                mySwarm.moveParticles(psoType = updateType)
+
+                # Update the Tray with new Particles to display
+                mySwarm.updateParticleTray()
+
+                # Visualize Particles
+                #mySwarm.print_summary()
+                #mySwarm.plot_evolved_candidate_solutions()
+
+
+            k = k + 1
+            if(k > MaxEvaluations-SwarmSize):
+                break
+        results[updateType].append(mySwarm.get_best_mean_fitness())
+
+
+df = pd.DataFrame.from_dict(results)
+filename = "Project2_Results_Log.csv"
+if os.path.exists(filename):
+  os.remove(filename)
+df.to_csv(filename)

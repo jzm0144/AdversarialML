@@ -1,0 +1,5 @@
+The examples given from the Prime Minister’s speech (communidies, opportunidies) provide an excellent example to consider the different roles of speakers and hearers in how language is used.
+
+Producing language takes considerable cognitive effort – and while current controversy focuses on use of phones while driving, research suggests that any concurrent language task can have an adverse effect on driving performance. Not surprisingly, speakers take shortcuts when they can, at least to the extent that those shortcuts do not affect communication. To see how the examples given above fit into this picture, we are going to have to get a little technical, but I think it is important.
+
+The difference between the sound [t] and the sound [d] (and correspondingly between [p]/[b] and [k]/[g]) is that the first sound is produced without any vibration in the larynx, while the second one does normally have such vibration (I’m hedging here because something odd happens at the start of words, more technical details here). This vibration is also referred to as ‘voice’: [t] is ‘voiceless’ while [d] is ‘voiced’.
