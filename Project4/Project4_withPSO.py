@@ -33,9 +33,6 @@ import ipdb as ipdb
 
 
 
-
-
-
 #
 #  Particle Swarm Optimization: Algorithm       
 #

@@ -186,7 +186,7 @@ model="lsvm"
 #model="mlp"
 #model="rbfsvm"
 file=open(model+".txt","w")
-for i in range(30):
+for i in range(1):
     myGA = SSGA(PopSize,ChromLength,model)
     myGA.generate_initial_population()
     print(myGA.print_best_max_fitness())

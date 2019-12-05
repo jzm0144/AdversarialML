@@ -1,8 +1,5 @@
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
-import pandas as pd
-import ipdb as ipdb
-
 
 def Get_Casis_CUDataset():
     X = []
@@ -24,9 +21,3 @@ class DenseTransformer(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         return X.toarray()
-
-def createDataset(input = "attacks.txt", output = "newData.txt"):
-    X, Y = Get_Casis_CUDataset()
-    ipdb.set_trace()
-
-createDataset()
