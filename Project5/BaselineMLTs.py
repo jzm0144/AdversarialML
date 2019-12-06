@@ -34,13 +34,11 @@ for repeat in range(4): # it was 10 intitially
                         activation = ('relu'),
                         max_iter=1000)
     # Decision Tree
-    dTree = 
-
+    dTree = DecisionTreeClassifier(random_state=0)
     # Random Forests
-
-    # Naive Bayes
-
-
+    RF = RandomForestClassifier(random_state=0)
+    # KNN, replaced my NB with KNN later. Naive Bayes
+    KNN = KNeighborsClassifier(n_neighbors=3)
 
     # Data Manipulation, Preprocessing, Training and Testing
 
@@ -82,13 +80,29 @@ for repeat in range(4): # it was 10 intitially
         rbfsvm.fit(train_data, train_labels)
         lsvm.fit(train_data, train_labels)
         mlp.fit(train_data, train_labels)
+        dTree.fit(train_data, train_labels)
+        RF.fit(train_data, train_labels)
+        KNN.fit(train_data, train_labels)
 
         rbfsvm_acc = rbfsvm.score(eval_data, eval_labels)
         lsvm_acc = lsvm.score(eval_data, eval_labels)
         mlp_acc = mlp.score(eval_data, eval_labels)
+        dTree_acc = rbfsvm.score(eval_data, eval_labels)
+        RF_acc = lsvm.score(eval_data, eval_labels)
+        KNN_acc = mlp.score(eval_data, eval_labels)
 
-        fold_accuracy.append((lsvm_acc, rbfsvm_acc, mlp_acc))
-        print(lsvm_acc,"  ", rbfsvm_acc,"  ", mlp_acc)
-print('RBFSVM', 'LSVM', 'MLP')
+        fold_accuracy.append((lsvm_acc,
+                              rbfsvm_acc,
+                              mlp_acc,
+                              dTree_acc,
+                              RF_acc,
+                              KNN_acc))
+        print(lsvm_acc,"  ",
+              rbfsvm_acc,"  ",
+              mlp_acc,"  ",
+              dTree_acc,"  ",
+              RF_acc,"  ",
+              KNN_acc)
+print(('RBFSVM, LSVM,  MLP,  DTREE,  RF,  KNN'))
 print(np.mean(fold_accuracy, axis = 0))
 #---------------------------------------------------------------------------
