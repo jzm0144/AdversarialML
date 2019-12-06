@@ -4,8 +4,6 @@ import pandas as pd
 import ipdb as ipdb
 from random import randint
 
-
-
 def Get_Casis_CUDataset():
     X = []
     Y = []

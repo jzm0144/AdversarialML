@@ -1,4 +1,4 @@
-import Data_Utils
+from myShenanigans import *
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler, normalize
 from sklearn import svm
@@ -8,6 +8,8 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn import preprocessing
 import numpy as np
 from sklearn.model_selection import cross_val_score
+
+from ModelTraining import *
 
 import os
 import random
@@ -19,8 +21,15 @@ import ipdb as ipdb
 from myShenanigans import *
 
 
- 
-create_Preturbed_Dataset(inputFile = 'CASIS-25_CU.txt',
-                             outputFile = "newData.csv")
 
-#
+
+X, Y = Get_Casis_CUDataset()
+
+# Train the Mode, the models are already trained
+# Train()
+
+X = preprocessVector(X)
+
+yHat = getPredictions(X)
+print(yHat)
+
