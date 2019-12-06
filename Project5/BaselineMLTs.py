@@ -1,41 +1,56 @@
-import Data_Utils
+import myShenanigans
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler, normalize
+
 from sklearn import svm
 from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.model_selection import StratifiedKFold
 from sklearn import preprocessing
 import numpy as np
 from sklearn.model_selection import cross_val_score
 import ipdb as ipdb
+import warnings
+warnings.simplefilter('ignore')
 
+#CU_X, Y = myShenanigans.Get_Casis_CUDataset()
 
-CU_X, Y = Data_Utils.Get_Casis_CUDataset()
-
-
+CU_X, Y = myShenanigans.create_Preturbed_Dataset(inputFile = 'CASIS-25_CU.txt')
 
 fold_accuracy = []
 
-for repeat in range(10):
+for repeat in range(4): # it was 10 intitially
     #-----------------------------Classifiers----------------------------
     # SVM with Radial Basis Function
     rbfsvm = svm.SVC()
     # Linear SVM
     lsvm = svm.LinearSVC()
     # Multilayer Perceptron
-    mlp = MLPClassifier(max_iter=2000)
+    mlp = MLPClassifier(hidden_layer_sizes = (95,25),
+                        activation = ('relu'),
+                        max_iter=1000)
+    # Decision Tree
+    dTree = 
+
+    # Random Forests
+
+    # Naive Bayes
+
 
 
     # Data Manipulation, Preprocessing, Training and Testing
 
     # 4-Fold CrossValidation with Shuffling
-    skf = StratifiedKFold(n_splits=4, shuffle=True, random_state=0)
+    skf = StratifiedKFold(n_splits=10, shuffle=True, random_state=0)
     
 
     scaler = StandardScaler()
     tfidf = TfidfTransformer(norm=None)
-    dense = Data_Utils.DenseTransformer()
+    dense = myShenanigans.DenseTransformer()
 
     for train, test in skf.split(CU_X, Y):
         #train split
@@ -73,7 +88,7 @@ for repeat in range(10):
         mlp_acc = mlp.score(eval_data, eval_labels)
 
         fold_accuracy.append((lsvm_acc, rbfsvm_acc, mlp_acc))
-
-
+        print(lsvm_acc,"  ", rbfsvm_acc,"  ", mlp_acc)
+print('RBFSVM', 'LSVM', 'MLP')
 print(np.mean(fold_accuracy, axis = 0))
 #---------------------------------------------------------------------------

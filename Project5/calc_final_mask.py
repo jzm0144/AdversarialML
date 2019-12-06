@@ -31,6 +31,8 @@ for i in range(len(lsvm)):
 print('Mask = ', mask)
 print("Mask Sum = ", sum(mask))
 
-Mask = pd.DataFrame(mask)
+ipdb.set_trace()
+Mask = pd.DataFrame({"mask":mask})
+
 Mask.to_csv('Mask.csv')
 
