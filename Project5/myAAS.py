@@ -27,6 +27,10 @@ import math
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+import Data_Utils
+from Extractor.DatasetInfo import DatasetInfo
+from Extractor.Extractors import BagOfWords, Stylomerty, Unigram, CharacterGram
+
 def ask_the_ensemble(input_name = "AdversarialText.txt"):
 
     X, Y = Get_Casis_CUDataset(input_name)
@@ -38,7 +42,6 @@ def ask_the_ensemble(input_name = "AdversarialText.txt"):
 
     yHat = getPredictions(X)
     return yHat
-
 
 def Get_Casis_CUDataset(filename = "CASIS-25_CU.txt"):
     X = []
@@ -291,3 +294,35 @@ def getPredictions(X):
         results.append(r)
 
     return results
+
+
+def getUnigramsFromTextFiles(data_dir = "./textfiles/", feature_set_dir = "./datasets/"):
+    extractor = Unigram(data_dir + "", "casis25")
+    extractor.start()
+    lookup_table = extractor.lookup_table
+    print("Generated Lookup Table:")
+    #print(lookup_table)
+    if lookup_table is not False:
+        print("'"+"', '".join([str("".join(x)).replace("\n", " ") for x in lookup_table]) + "'")
+
+    # Get dataset information
+    dataset_info = DatasetInfo("casis25_bow")
+    dataset_info.read()
+    authors = dataset_info.authors
+    writing_samples = dataset_info.instances
+
+    print("\n\nAuthors in the dataset:")
+    print(authors)
+
+    print("\n\nWriting samples of an author advText")
+    print(authors["advText01"])
+
+    print("\n\nAll writing samples in the dataset")
+    print(writing_samples)
+
+    print("\n\nThe author of the writing sample advText01")
+    print(writing_samples["advText01"])
+
+    generated_file = feature_set_dir + extractor.out_file + ".txt"
+    data, labels = Data_Utils.get_dataset(generated_file)
+    #print(labels[0], data[0])
