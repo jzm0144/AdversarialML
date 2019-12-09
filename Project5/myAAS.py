@@ -31,7 +31,7 @@ import Data_Utils
 from Extractor.DatasetInfo import DatasetInfo
 from Extractor.Extractors import BagOfWords, Stylomerty, Unigram, CharacterGram
 
-def ask_the_ensemble(input_name = "AdversarialText.txt"):
+def ask_the_ensemble(input_name = "AdversarialTest.txt"):
 
     X, Y = Get_Casis_CUDataset(input_name)
 
@@ -326,3 +326,29 @@ def getUnigramsFromTextFiles(data_dir = "./textfiles/", feature_set_dir = "./dat
     generated_file = feature_set_dir + extractor.out_file + ".txt"
     data, labels = Data_Utils.get_dataset(generated_file)
     #print(labels[0], data[0])
+
+def syncFeat_Attack(feature_set_dir = "./datasets/", attackFile = 'AdversarialTest.txt',out_file = 'ordered_feats.txt'):
+    # Just to clear everything of out_file at first
+    out = open(feature_set_dir + out_file, "w")
+    out.close()
+
+
+    with open(attackFile, "r") as attackFile:
+        for aline in attackFile:
+            saline = aline.strip().split(".")
+            aname = saline[0]
+            with open(feature_set_dir+"casis25_ncu.txt") as featFile:
+                for bline in featFile:
+                    sbline = bline.strip().split(",")
+                    bname = sbline[0]
+                    if bname == aname:
+                        out = open(feature_set_dir + out_file, "a")
+                        out.write(bline)
+                        out.close()
+                featFile.close()
+        attackFile.close()
+
+
+
+
+            
