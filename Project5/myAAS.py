@@ -347,8 +347,3 @@ def syncFeat_Attack(feature_set_dir = "./datasets/", attackFile = 'AdversarialTe
                         out.close()
                 featFile.close()
         attackFile.close()
-
-
-
-
-            

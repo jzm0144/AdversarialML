@@ -1,0 +1,21 @@
+Big is beautiful, but has Asus gone an inch too far?
+As smartphones get bigger and tablets get smaller they've spawned a new in-between category known as the "phablet", one of those hideous portmanteaus known to drive linguists into fits of rage. Once you get past the name, a phablet might be exactly the hybrid device you've been searching for if you've been craving a little extra screen real estate while out on the road.
+Apart from the size, what's really amazing about the Fonepad is the low AU$329 price tag. 
+
+There's no hard and fast rule, but typically phablets come in anywhere between 5 and 7-inches -- covering devices such as the 5.5-inch Samsung Galaxy Note II and 6.1-inch Huawei Ascend Mate. When Asus slaps down the 7-inch Fonepad on the table you have to wonder whether it's time to abandon any pretence of this still being a phone and simply declare it a tablet which happens to make phone calls. You might manage to squeeze it into your pants or jacket pocket, but you certainly don't want to be holding the Fonepad up to your ear as you walk down the street. A Bluetooth earpiece is probably a wise investment if you've got any thoughts of actually using it for voice calls.
+Apart from the size, what's really amazing about the Fonepad is the low AU$329 price tag for the 8GB 3G-enabled model. That brings it in considerably cheaper than other phablets and even puts it on par with the 3G models of Google's 7-inch Nexus tablet. In fact the Fonepad is almost identical to the Nexus 7, which is little surprise as they're both produced by Asus. The Fonepad moves the power and volume buttons to the left side of the display and lacks the Nexus 7's exposed docking/charge pins, but it also adds the rear camera missing on the Nexus 7.
+
+The Fonepad's spec sheet is an impressive read considering the price tag;
+Advertisement
+7-inch, 1280x800 IPS LED screen
+340 grams, 10.4 mm thick
+Android 4.1
+8GB onboard storage
+micro-USB, micro-SD
+1.2 megapixel front camera, 3 megapixel rear with 720p video capture
+Bluetooth 3, 802.11b/g/n wi-fi (no 5GHz support)
+HSPA+  21 Mbps - 850/900/1900/2100 bands
+It's obviously not going to rival a powerhouse like the Samsung Galaxy S4, and you're missing out on LTE, but all up it's not too shabby considering the price. NFC is perhaps the only feature notable by its absence, meaning you miss out on Android Beam and fast-pairing options.
+The key differentiator between the Fonepad and its competitors is that it packs an Intel Atom 1.2GHz single-core processor, whereas the Nexus 7 boasts a quad-core NVIDIA Tegra 3 1.3GHz powerplant. Both devices feature 1GB of RAM but the Nexus 7 naturally comes out ahead in the benchmarks. But it's not the severe beating your might expect for a budget device and the Fonepad is likely to satisfy your average person who doesn't tend to push their gadgets to the limit. You'll notice the Fonepad hesitate slightly when playing graphics-intensive car racing games or zooming around on Google Earth, but not enough to really frustrate you. Reportedly a handful of Android apps don't play nicely with Intel chips, but I didn't encounter any when testing the Fonepad.
+Android fans will have noticed in the breakdown that the Fonepad runs Android 4.1 rather than the latest 4.2, although Asus has said the 4.2 update is on the way. What you do get with the Fonepad is a range of Asus Android extras such as WebStorage with Microsoft Office compatibility and a SuperNote note-taking app (but no stylus as you'll find with the Galaxy Note II). The Fonepad also offers advanced options such as power saving, screen calibration and audio quality. What's perhaps most interesting is Asus' extra soft button which lets you launch apps in small windows, floating on top of other apps, such as the calendar, browser, email and calculator.
+All up the Fonepad is an amazing piece of hardware which makes very few sacrifices compared to the benchmark Nexus 7. A 7-inch smartphone isn't for everyone, but if you've been waiting for the mother of all phablets then this could be the one for you.
