@@ -10,7 +10,6 @@ def getOcclusionMaps(X, model, c = 0):
     H = np.zeros((X.shape[0], X.shape[1], 25))
     mapNumber = H.shape[0]
 
-
     for i in range(mapNumber):
         if i%100 == 0:
             print('Heatmaps Ready Until Instance,  ', i)
@@ -75,21 +74,3 @@ def saveHeatmaps(H):
     print('--------------------------------------------------------------------')
     print("Single Heatmaps and Avg Heatmaps are Saved in your Current Directory")
     print('--------------------------------------------------------------------')
-
-
-'''
-X, Y = create_Preturbed_Dataset(inputFile = 'CASIS-25_CU.txt')
-
-X = preprocessVector(X)
-
-#model = Train()
-path   = "Trained_Models/"
-model    = load(open(path+'mlp.pkl',    'rb'))
-
-
-H = getOcclusionMaps(X[:, :], model, c = 0)
-
-saveHeatmaps(H)
-
-ipdb.set_trace()
-'''

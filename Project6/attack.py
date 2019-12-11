@@ -32,7 +32,7 @@ def getLocs(hX, top = 10):
     return myList
 
 
-def getTop(h, top = 10): #H is 1D (,95), and return list of top 10 indices
+def getTop(h, top = 10): #H is 1D (,95), and return list of top indices
     locs = []
     for i in range(top):
         t = np.argmax(h)
@@ -100,10 +100,3 @@ def doChanges(X, means, modes, cLocs,classID):
         thisX[:,thisLoc] = R
     X[i:j, :] = thisX
     return X
-'''
-dic = getSalienceLocations(path = 'avgHeatmaps', top = 10)
-
-newX = contaminate(X, topLocations = dic)
-
-ipdb.set_trace()
-'''
