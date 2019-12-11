@@ -46,7 +46,7 @@ def getH(thisX, model, pY, c):
         newX = np.array([thisX])
         newX[0, i] = c
         prob = model.predict_proba(newX[0:1, :])
-        heat = prob[0,pY]
+        heat = 1 - prob[0,pY] # previously prob[0,pY]
         X[0,i] = heat
     return X
 
