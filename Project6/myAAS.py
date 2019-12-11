@@ -263,7 +263,7 @@ def getPredictions(X):
         #print(unique_list, counts)
         r = thisP[np.argmax(np.array(counts))]
         results.append(r)
-    return results
+    return np.array(results)
 
 
 def getUnigramsFromTextFiles(data_dir = "./textfiles/", feature_set_dir = "./datasets/"):
