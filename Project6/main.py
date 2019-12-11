@@ -45,5 +45,9 @@ print('-------------------------')
 print("Attacked Predictions Ready")
 print('-------------------------')
 
-ipdb.set_trace()
+normalAcc = calcAccuracy(Y, yHat_Normal)
+attackAcc = calcAccuracy(Y, yHat_Attacked)
 
+print('-----------------------------------------------------------')
+print("Normal Accuracy = ", normalAcc,'---- Attack Accuracy = ', attackAcc)
+print('-----------------------------------------------------------')

@@ -12,7 +12,8 @@ def getOcclusionMaps(X, model, c = 0):
 
 
     for i in range(mapNumber):
-        print('Heatmaps Ready For Instance,  ', i)
+        if i%100 == 0:
+            print('Heatmaps Ready Until Instance,  ', i)
         thisX = X[i, :]
         H[i, :, :] = getHeatmap(thisX, model, c)
     print('---------------------')
