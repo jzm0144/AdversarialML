@@ -317,3 +317,10 @@ def syncFeat_Attack(feature_set_dir = "./datasets/", attackFile = 'AdversarialTe
                         out.close()
                 featFile.close()
         attackFile.close()
+
+def calcAccuracy(y, yHat):
+    same = 1
+    for i in range(2500):
+        if y[i] == yHat[i]:
+            same +=1
+    return same/2500
