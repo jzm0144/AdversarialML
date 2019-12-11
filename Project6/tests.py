@@ -65,5 +65,5 @@ for k in range(topScores):
     R[k,2] = mu_Attack
 
 
-plt.figure();plt.title('Performance Reduction');plt.plot(R[:,0], R[:,1:]);plt.xlabel('Num of Significant Features Replaced');plt.ylabel('Classification Accuracy');plt.show();
+plt.figure();plt.title('Performance Reduction');plt.ylim(0, 1);plt.plot(R[:,0], R[:,1:]);plt.xlabel('Num of Significant Features Replaced');plt.ylabel('Classification Accuracy');plt.show();
 ipdb.set_trace()
