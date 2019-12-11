@@ -28,8 +28,8 @@ yHat_Normal = getPredictions(X)
 path   = "Trained_Models/"
 model    = load(open(path+'mlp.pkl',    'rb'))
 
-#hX = occlusion.getOcclusionMaps(X[:, :], model, c = 0)  #hX = (2500 x 95 x 25)
-#occlusion.saveHeatmaps(hX)
+hX = occlusion.getOcclusionMaps(X[:, :], model, c = 0)  #hX = (2500 x 95 x 25)
+occlusion.saveHeatmaps(hX)
 
 topScores = 10;
 R  = np.zeros((topScores,3))
