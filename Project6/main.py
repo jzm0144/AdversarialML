@@ -27,9 +27,9 @@ print('-------------------------')
 #------- Part-2 Get the Occlusion Heatmaps for the Entire Perturbed Dataset
 path   = "Trained_Models/"
 model    = load(open(path+'mlp.pkl',    'rb'))
-hX = occlusion.getOcclusionMaps(X[:, :], model, c = 0)  #hX = (2500 x 95 x 25)
 
-occlusion.saveHeatmaps(H)
+hX = occlusion.getOcclusionMaps(X[:, :], model, c = 0)  #hX = (2500 x 95 x 25)
+occlusion.saveHeatmaps(hX)
 
 # topLocations = dictionary of top lcoations topLocations['class'][probeID]
 # class is the classification decision and the probeID (0,1,2,....24) is the
@@ -42,5 +42,7 @@ newX = attack.contaminate(X, topLocations)
 #------ Part-4 Check Accuracy with the Contaminated Dataset
 yHat_Attacked = getPredictions(newX)
 print('-------------------------')
-print("Attacked Predictions Ready");
+print("Attacked Predictions Ready")
 print('-------------------------')
+
+ipdb.set_trace()
