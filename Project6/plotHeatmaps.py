@@ -9,19 +9,16 @@ df = pd.read_csv('allHeatmaps/0.csv')
 df = df.values[:,1:]
 
 
-plt.figure()
-plt.subplot(211)
+plt.figure(1)
 plt.plot(df[:,0])
 plt.ylabel("Heat Scores")
-plt.ylim(0, 1.1)
-plt.subplot(212)
-plt.plot(df[:,4:-1])
+plt.ylim(0, 1)
 plt.xlabel('features')
-plt.ylim(0, 0.015)
+plt.title('Occlusion Map (1001)')
 plt.show()
 
 
-'''
+
 df1 = pd.read_csv('avgHeatmaps/1000.csv')
 df1 = df1.values[:,1:]
 df2 = pd.read_csv('avgHeatmaps/1005.csv')
@@ -30,7 +27,7 @@ df3 = pd.read_csv('avgHeatmaps/1008.csv')
 df3 = df3.values[:,1:]
 
 
-plt.figure()
+plt.figure(2)
 plt.subplot(311);
 plt.plot(df1[:,0]);
 plt.ylim(0, 1)
@@ -44,7 +41,7 @@ plt.plot(df3[:,8]);
 plt.ylim(0, 1)
 plt.xlabel('Features')
 plt.show()
-'''
+
 ipdb.set_trace()
 
 
