@@ -34,7 +34,7 @@ occlusion.saveHeatmaps(hX)
 # topLocations = dictionary of top lcoations topLocations['class'][probeID]
 # class is the classification decision and the probeID (0,1,2,....24) is the
 # heatmap query
-topLocations = attack.getSalienceLocations(path = 'avgHeatmaps', top = 10)
+topLocations = attack.getSalienceLocations(path = 'avgHeatmaps', topScores = 10)
 
 #------ Part-3 Implement the Feature Contamination Attacks on all the examples
 newX = attack.contaminate(X, topLocations)

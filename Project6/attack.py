@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from myAAS import *
 
 
-def getSalienceLocations(path = 'avgHeatmaps', top = 10):
+def getSalienceLocations(path = 'avgHeatmaps', topScores = 0):
     dic = {'1000':{},'1001':{},'1002':{},'1003':{},'1004':{},
             '1005':{},'1006':{},'1007':{},'1008':{},'1009':{},
             '1010':{},'1011':{},'1012':{},'1013':{},'1014':{},
@@ -20,21 +20,21 @@ def getSalienceLocations(path = 'avgHeatmaps', top = 10):
         df = pd.read_csv(path+'/'+name+'.csv')
         df = df.values
         df = df[:,1:] # don't need the index column
-        dic[name] = getLocs(df, top=10)
+        dic[name] = getLocs(df, topScores)
     return dic
 
-def getLocs(hX, top = 10):
+def getLocs(hX, topScores):
     myList = []
     for i in range(25):
         q = hX[:,i]
-        qLocs = getTop(q, top = 10)
+        qLocs = getTop(q, topScores)
         myList.append(qLocs)
     return myList
 
 
-def getTop(h, top = 10): #H is 1D (,95), and return list of top indices
+def getTop(h, topScores): #H is 1D (,95), and return list of top indices
     locs = []
-    for i in range(top):
+    for i in range(topScores):
         t = np.argmax(h)
         locs.append(t)
         h[t] = 0
