@@ -1,32 +1,46 @@
 import warnings
 warnings.simplefilter('ignore')
 import ipdb as ipdb
-
 from myAAS import *
+import occlusion
+import attack
 
 
-getUnigramsFromTextFiles(data_dir = "./textfiles/", feature_set_dir = "./datasets/")
+#------ Part-1 Perturbation, Model Training/Testing and Reporting Normal Accuracy
 
-syncFeat_Attack(feature_set_dir = "./datasets/", attackFile = 'AdversarialTest.txt',out_file = 'ordered_feats.txt')
+# We will do the entire study using the larger, masked and perturbed dataset
+X, Y = create_Preturbed_Dataset(inputFile = 'CASIS-25_CU.txt')
+
+# Train the Mode, the models are already trained
+Train()
+
+# Preprocess the entire dataset before doing anything else
+X = preprocessVector(X)
+
+# Get the Predictions
+yHat_Normal = getPredictions(X)
+print('-------------------------')
+print("Noramal Predictions Ready");
+print('-------------------------')
 
 
-# Please insert path to your text file containing the attacks
-y = ask_the_ensemble(input_name = "./datasets/ordered_feats.txt")
+#------- Part-2 Get the Occlusion Heatmaps for the Entire Perturbed Dataset
+path   = "Trained_Models/"
+model    = load(open(path+'mlp.pkl',    'rb'))
+hX = occlusion.getOcclusionMaps(X[:, :], model, c = 0)  #hX = (2500 x 95 x 25)
 
-print("The predictions List") ; print(y)
+occlusion.saveHeatmaps(H)
 
+# topLocations = dictionary of top lcoations topLocations['class'][probeID]
+# class is the classification decision and the probeID (0,1,2,....24) is the
+# heatmap query
+topLocations = attack.getSalienceLocations(path = 'avgHeatmaps', top = 10)
 
-# Delete old data from the Results File
-file = open("AdversarialTestResults.txt","w"); file.close()
+#------ Part-3 Implement the Feature Contamination Attacks on all the examples
+newX = attack.contaminate(X, topLocations)
 
-
-
-attackFile = open('AdversarialTest.txt','r')
-result = open("AdversarialTestResults.txt","a");
-t = 0;
-for line in attackFile:
-    result.write(line[:13] + ',' +y[t]+'\n')
-    t += 1
-
-attackFile.close()
-result.close()
+#------ Part-4 Check Accuracy with the Contaminated Dataset
+yHat_Attacked = getPredictions(newX)
+print('-------------------------')
+print("Attacked Predictions Ready");
+print('-------------------------')

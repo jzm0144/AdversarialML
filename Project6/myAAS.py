@@ -40,6 +40,8 @@ def ask_the_ensemble(input_name = "AdversarialTest.txt"):
 
     X = preprocessVector(X)
 
+    ipdb.set_trace()
+
     yHat = getPredictions(X)
     return yHat
 
@@ -135,6 +137,7 @@ def create_Preturbed_Dataset(inputFile = 'CASIS-25_CU.txt'):
     
     print('******************')
     print("Perturbation Done:")
+    print('******************')    
     return xData, np.array(yData)
 
 
@@ -146,20 +149,11 @@ def Train():
 
     for repeat in range(1): # it was 10 intitially
         #-----------------------------Classifiers------------------------
-        # SVM with Radial Basis Function
-        rbfsvm = svm.SVC()
-        # Linear SVM
-        lsvm = svm.LinearSVC()
+        
         # Multilayer Perceptron
         mlp = MLPClassifier(hidden_layer_sizes = (95,25),
                             activation = ('relu'),
                             max_iter=1000)
-        # Decision Tree
-        dTree = DecisionTreeClassifier(random_state=0)
-        # Random Forests
-        RF = RandomForestClassifier(random_state=0)
-        # KNN, replaced my NB with KNN later. Naive Bayes
-        KNN = KNeighborsClassifier(n_neighbors=3)
 
         # Data Manipulation, Preprocessing, Training and Testing
 
@@ -197,48 +191,23 @@ def Train():
             train_data =  CU_train_data
             eval_data = CU_eval_data
 
-            # evaluation
-            rbfsvm.fit(train_data, train_labels)
-            lsvm.fit(train_data, train_labels)
+            # training
             mlp.fit(train_data, train_labels)
-            dTree.fit(train_data, train_labels)
-            RF.fit(train_data, train_labels)
-            KNN.fit(train_data, train_labels)
 
-            rbfsvm_acc = rbfsvm.score(eval_data, eval_labels)
-            lsvm_acc = lsvm.score(eval_data, eval_labels)
+            # evaluation
             mlp_acc = mlp.score(eval_data, eval_labels)
-            dTree_acc = rbfsvm.score(eval_data, eval_labels)
-            RF_acc = lsvm.score(eval_data, eval_labels)
-            KNN_acc = mlp.score(eval_data, eval_labels)
 
-            fold_accuracy.append((lsvm_acc,
-                                  rbfsvm_acc,
-                                  mlp_acc,
-                                  dTree_acc,
-                                  RF_acc,
-                                  KNN_acc))
-            print(lsvm_acc,"  ",
-                  rbfsvm_acc,"  ",
-                  mlp_acc,"  ",
-                  dTree_acc,"  ",
-                  RF_acc,"  ",
-                  KNN_acc)
-    print(('RBFSVM, LSVM,  MLP,  DTREE,  RF,  KNN'))
-    print(np.mean(fold_accuracy, axis = 0))
+            
+    print('MLP Accuracy = ', mlp_acc)
+
     #---------------------------------------------------------------------------
     # Save the Trained Models Now
     path = "Trained_Models/"
-    dump(lsvm, open(path + 'lsvm.pkl', 'wb'))
-    dump(rbfsvm, open(path + 'rbfsvm.pkl', 'wb'))
     dump(mlp, open(path + 'mlp.pkl', 'wb'))
-    dump(dTree, open(path + 'dTree.pkl', 'wb'))
-    dump(RF, open(path + 'RF.pkl', 'wb'))
-    dump(KNN, open(path + 'KNN.pkl', 'wb'))
-
-    print('******************')
-    print('Saved the Models')
-    print('******************')
+    print('***************************')
+    print('Trained and Saved the Model')
+    print('***************************')
+    return mlp
 
 
 def preprocessVector(X):
@@ -255,7 +224,9 @@ def preprocessVector(X):
 
     # normalization
     X = normalize(X)
-
+    print('--------------------')
+    print('Preprocessing Done!!')
+    print('--------------------')
     return X
 
 def getPredictions(X):
@@ -292,7 +263,6 @@ def getPredictions(X):
         #print(unique_list, counts)
         r = thisP[np.argmax(np.array(counts))]
         results.append(r)
-
     return results
 
 
